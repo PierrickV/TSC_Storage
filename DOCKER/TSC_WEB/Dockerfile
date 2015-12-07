@@ -5,6 +5,7 @@
 # Use "docker build --tag=tsc/storage:Web ." to build nginx image
 FROM nginx
 MAINTAINER veran@intechinfo.fr
+
 # Set terminal to be noninteractive
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -16,7 +17,7 @@ WORKDIR /config_files
 
 # Expose ports
 # 80 = Nginx
-EXPOSE 8080
+EXPOSE 80
 
 # Configure Nginx
 COPY /config_files/nginx.conf /etc/nginx/conf.d/default.conf

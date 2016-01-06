@@ -5,8 +5,8 @@
 docker rm -f tsc_web_storage
 
 docker run \
---name tsc_web_storage \
---restart=always \
--v /home/docker/Git/TSC_storage/WWW:/var/www/:ro \
--p 80:80 \
--d tsc/storage:Web
+        --name tsc_web_storage \
+        --restart=always \
+        -v ~/Git/TSC_storage/WWW:/var/www/:ro \
+        -p 80:80 \
+        -d tsc/storage:Web

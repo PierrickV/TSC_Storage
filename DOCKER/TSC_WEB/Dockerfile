@@ -14,10 +14,6 @@ RUN apt-get update && apt-get install -y \
 ADD config_files config_files
 WORKDIR /config_files
 
-# Expose ports
-# 80 = Nginx
-EXPOSE 8080
-
 # Configure Nginx
 COPY /config_files/nginx.conf /etc/nginx/conf.d/default.conf
 

@@ -2,6 +2,7 @@
 # Pierrick VERAN - Tardigrade Security Challenge - 06/01/2015
 # mkdir -p ~/nv_challenges/{validated,non_validated}/{public,private}/{file,docker}
 # mkdir -p ~/stored_challenges/{public,private}/{file,docker}
+# mkdir -p ~/tmp/
 
 # Public docker images
 echo "Check for public docker images"
@@ -15,20 +16,19 @@ then
     unzip $(ls ~/nv_challenges/validated/public/docker/* | grep zip) -d ~/tmp/
 
     #Build
-    name=$(ls ~/tmp/)
-    echo " Build of file $name"
-    cd ~/tmp/$name
-    docker build -t challenges/$name:latest .
+    tmp_name=$(ls ~/tmp/)
+    echo " Build of file $tmp_name"
+    cd ~/tmp/$tmp_name
+    docker build -t challenges/$tmp_name:latest .
 
-    docker tag -f challenges/$name 10.8.97.6:5000/challenges/$name:latest
-    # docker push 10.8.97.6:5000/$name:latest
+    docker tag -f challenges/$tmp_name 10.8.97.6:5000/challenges/$tmp_name:latest
+    # docker push tsc.itinet.fr/5000/$tmp_name:latest
 
     #Clean
     echo "Deleting temporary files"
-    name=$(ls ~/nv_challenges/validated/public/docker/*)
     echo "Moving file $name to ~/stored_challenges/public/docker "
-    mv $name ~/stored_challenges/public/docker/
-    rm -R ~/tmp/*
+    sudo mv $name ~/stored_challenges/public/docker/
+    sudo rm -R ~/tmp/*
 
 else
     echo "No files found"

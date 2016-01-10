@@ -16,13 +16,13 @@ then
     unzip $(ls ~/nv_challenges/validated/public/docker/* | grep zip) -d ~/tmp/
 
     #Build
-    tmp_name=$(ls ~/tmp/)
-    echo " Build of file $tmp_name"
-    cd ~/tmp/$tmp_name
+    app_name=$(ls ~/tmp/)
+    echo " Build of file $app_name"
+    cd ~/tmp/$app_name
     docker build -t challenges/$tmp_name:latest .
-
-    docker tag -f challenges/$tmp_name 10.8.97.6:5000/challenges/$tmp_name:latest
-    # docker push tsc.itinet.fr/5000/$tmp_name:latest
+    docker login --username="public" --password="public" --email="veran@intechinfo.fr" localhost:5000
+    docker tag -f challenges/$app_name hub.tsc.itinet.fr:5000/challenges/$app_name:latest
+    docker push hub.tsc.itinet.fr:5000/$app_name:latest
 
     #Clean
     echo "Deleting temporary files"
@@ -43,15 +43,6 @@ then
     name=$(ls ~/nv_challenges/validated/docker/*)
     echo "Unzip file $name"
     unzip $(ls ~/nv_challenges/validated/private/docker/* | grep zip) -d ~/tmp/
-
-    #Build
-    name=$(ls ~/tmp/)
-    echo " Build of file $name"
-    cd ~/tmp/$name
-    docker build -t challenges/$name:latest .
-
-    docker tag -f challenges/$name 10.8.97.6:50/challenges/$name:latest
-    # docker push 10.8.97.6:50/$name:latest
 
     #Clean
     echo "Deleting temporary files"

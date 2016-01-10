@@ -7,6 +7,7 @@ docker rm -f tsc_hub_public
 
 docker run \
         --name tsc_hub_public \
+        --hostname hub.tsc.itinet.fr \
         --restart=always \
         -p 5000:5000 \
         -v $(pwd)/HUB/auth_public:/auth \
@@ -27,4 +28,8 @@ docker run \
 # sudo update-ca-certificates
 # sudo service docker restart
 # docker pull distribution/registry:master
-# docker run --entrypoint htpasswd registry:2 -Bbn public public > auth_public/htpasswd
+# docker run --entrypoint htpasswd registry:2 -Bbn public public > auth/htpasswd
+# docker login --username="public" --password="public" --email="veran@intechinfo.fr" localhost:5000
+# docker tag -f ubuntu localhost:5000/ubuntu
+# docker push localhost:5000/ubuntu
+# echo "10.8.99.111     dl.tsc.itinet.fr" >> /etc/hosts

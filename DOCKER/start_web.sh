@@ -6,6 +6,7 @@ docker rm -f tsc_web_storage
 
 docker run \
         --name tsc_web_storage \
+        --hostname dl.tsc.itinet.fr \
         --restart=always \
         -v ~/Git/TSC_storage/WWW:/var/www/:ro \
         -p 80:80 \

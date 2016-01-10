@@ -3,8 +3,10 @@
 # Launch hub container for public docker images storage
 # docker pull distribution/registry:master
 
+echo "Suppression de l'ancien conteneur .."
 docker rm -f tsc_hub_public
 
+echo ".. démarrage du nouveau"
 docker run \
         --name tsc_hub_public \
         --hostname hub.tsc.itinet.fr \
